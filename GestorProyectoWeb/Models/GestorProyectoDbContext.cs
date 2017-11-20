@@ -14,11 +14,11 @@ namespace GestorProyectoWeb.Models
         {
         }
 
-        public DbSet<Proyecto> Proyecto { get; set; }
-        public DbSet<Usuario> Usuario { get; set; }
-        public DbSet<Tarea> Tarea { get; set; }
-        public DbSet<Recurso> Recurso { get; set; }
-        public DbSet<Nota> Nota { get; set; }
+        public virtual DbSet<Proyecto> Proyecto { get; set; }
+        public virtual DbSet<Usuario> Usuario { get; set; }
+        public virtual DbSet<Tarea> Tarea { get; set; }
+        public virtual DbSet<Recurso> Recurso { get; set; }
+        public virtual DbSet<Nota> Nota { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
