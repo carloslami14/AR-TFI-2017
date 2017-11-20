@@ -43,6 +43,9 @@ namespace GestorProyectoWeb.Models
                     m.MapRightKey("IdUsuario");
                 });
 
+            // Relacion Uno a Muchos, Tarea-Tarea
+            modelBuilder.Entity<Tarea>().HasMany(x => x.TareasDependientes);
+
             // Relacion Uno a Muchos, Proyecto-Usuario
             modelBuilder.Entity<Proyecto>().HasMany(x => x.Usuarios);
         }

@@ -12,8 +12,15 @@ namespace GestorProyectoWeb.Models
     {
         [Key]
         public int IdNota { get; set; }
-        public Tarea  Tarea { get; set; }
+
+        [Required]
+        public Tarea Tarea { get; set; }
+
+        [StringLength(300)]
         public string Descripcion { get; set; }
+
+        [Required]
+        [DataType(DataType.DateTime)]
         public DateTime Fecha { get; set; }
     }
 }

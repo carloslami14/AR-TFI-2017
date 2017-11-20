@@ -12,9 +12,17 @@ namespace GestorProyectoWeb.Models
     {
         [Key]
         public int IdRecurso { get; set; }
+
+        [Required]
+        [StringLength(30)]
         public string Nombre { get; set; }
+
+        [Required]
         public float Precio { get; set; }
+
+        [StringLength(300)]
         public string Descripcion { get; set; }
+
         public virtual List<Tarea> Tareas { get; set; }
 
         public Recurso(int id, string nom, float pre, string desc, List<Tarea> tar)

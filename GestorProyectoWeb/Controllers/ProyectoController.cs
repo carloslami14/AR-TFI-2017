@@ -42,7 +42,7 @@ namespace GestorProyectoWeb.Controllers
         {
             try
             {
-                    _repositorio.CrearProyecto(proyecto);
+                    _repositorio.GuardarProyecto(proyecto);
             }
             catch (Exception ex)
             {
