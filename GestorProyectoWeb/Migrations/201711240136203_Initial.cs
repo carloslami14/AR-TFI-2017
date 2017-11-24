@@ -12,12 +12,12 @@ namespace GestorProyectoWeb.Migrations
                 c => new
                     {
                         IdNota = c.Int(nullable: false, identity: true),
-                        Descripcion = c.String(),
+                        Descripcion = c.String(maxLength: 300),
                         Fecha = c.DateTime(nullable: false),
-                        Tarea_IdTarea = c.Int(),
+                        Tarea_IdTarea = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.IdNota)
-                .ForeignKey("dbo.Tarea", t => t.Tarea_IdTarea)
+                .ForeignKey("dbo.Tarea", t => t.Tarea_IdTarea, cascadeDelete: true)
                 .Index(t => t.Tarea_IdTarea);
             
             CreateTable(
@@ -44,8 +44,8 @@ namespace GestorProyectoWeb.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Nombre = c.String(),
-                        Descripcion = c.String(),
+                        Nombre = c.String(nullable: false, maxLength: 30),
+                        Descripcion = c.String(maxLength: 300),
                         FechaInicio = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
@@ -55,9 +55,12 @@ namespace GestorProyectoWeb.Migrations
                 c => new
                     {
                         IdUsuario = c.Int(nullable: false, identity: true),
-                        NombreUsuario = c.String(),
-                        Nombre = c.String(),
-                        Contraseña = c.String(),
+                        NombreUsuario = c.String(nullable: false, maxLength: 30),
+                        Nombre = c.String(nullable: false, maxLength: 30),
+                        Contraseña = c.String(nullable: false, maxLength: 25),
+                        Telefono = c.Int(nullable: false),
+                        Correo = c.String(),
+                        FechaNacimiento = c.DateTime(nullable: false),
                         TipoUsuario = c.Int(nullable: false),
                         Proyecto_Id = c.Int(),
                     })
@@ -70,9 +73,9 @@ namespace GestorProyectoWeb.Migrations
                 c => new
                     {
                         IdRecurso = c.Int(nullable: false, identity: true),
-                        Nombre = c.String(),
+                        Nombre = c.String(nullable: false, maxLength: 30),
                         Precio = c.Single(nullable: false),
-                        Descripcion = c.String(),
+                        Descripcion = c.String(maxLength: 300),
                         TipoRecurso = c.Int(),
                         Cantidad = c.Int(),
                         TipoRecurso1 = c.Int(),
@@ -111,6 +114,7 @@ namespace GestorProyectoWeb.Migrations
         
         public override void Down()
         {
+            DropForeignKey("dbo.Nota", "Tarea_IdTarea", "dbo.Tarea");
             DropForeignKey("dbo.Tarea_Usuario", "IdUsuario", "dbo.Usuario");
             DropForeignKey("dbo.Tarea_Usuario", "IdTarea", "dbo.Tarea");
             DropForeignKey("dbo.Tarea", "Tarea_IdTarea", "dbo.Tarea");
@@ -118,7 +122,6 @@ namespace GestorProyectoWeb.Migrations
             DropForeignKey("dbo.Tarea_Recurso", "IdTarea", "dbo.Tarea");
             DropForeignKey("dbo.Usuario", "Proyecto_Id", "dbo.Proyecto");
             DropForeignKey("dbo.Tarea", "Proyecto_Id", "dbo.Proyecto");
-            DropForeignKey("dbo.Nota", "Tarea_IdTarea", "dbo.Tarea");
             DropIndex("dbo.Tarea_Usuario", new[] { "IdUsuario" });
             DropIndex("dbo.Tarea_Usuario", new[] { "IdTarea" });
             DropIndex("dbo.Tarea_Recurso", new[] { "IdRecurso" });

@@ -13,7 +13,7 @@ namespace GestorProyectoWeb.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201711201901491_Initial"; }
+            get { return "201711240136203_Initial"; }
         }
         
         string IMigrationMetadata.Source
