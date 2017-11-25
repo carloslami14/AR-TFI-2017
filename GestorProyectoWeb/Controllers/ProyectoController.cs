@@ -12,9 +12,12 @@ namespace GestorProyectoWeb.Controllers
     {
         private Repositorio _repositorio;
         
+        
         public ProyectoController()
         {
+            ViewBag.showSuccessAlert = 0;
             _repositorio = new Repositorio();
+            
         }
 
         // GET: Proyecto
@@ -42,7 +45,7 @@ namespace GestorProyectoWeb.Controllers
         {
             try
             {
-                    _repositorio.GuardarProyecto(proyecto);
+                   _repositorio.GuardarProyecto(proyecto);
             }
             catch (Exception ex)
             {
@@ -56,7 +59,8 @@ namespace GestorProyectoWeb.Controllers
         // GET: Proyecto/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Proyecto p = _repositorio.BuscarProyecto(id);
+                return View(p);
         }
 
         // POST: Proyecto/Edit/5
@@ -77,7 +81,10 @@ namespace GestorProyectoWeb.Controllers
         // GET: Proyecto/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            _repositorio.EliminarProyecto(id);
+            ViewBag.showSuccessAlert = 1;
+            return RedirectToAction("Index");
+           
         }
 
         // POST: Proyecto/Delete/5

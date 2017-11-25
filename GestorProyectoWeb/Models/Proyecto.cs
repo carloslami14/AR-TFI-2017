@@ -22,6 +22,8 @@ namespace GestorProyectoWeb.Models
         public string Descripcion { get; set; }
 
         [Required]
+        //[DataType(DataType.Date)]
+        [Display(Name = "Fecha de Inicio")]
         public DateTime FechaInicio { get; set; }
 
         public virtual List<Usuario> Usuarios { get; set; }

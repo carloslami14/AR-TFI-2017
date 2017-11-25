@@ -21,11 +21,17 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <!--Parametros: Nombre que figura en la vista, Nombre de la accion dentro del controlador, Nombre del controlador-->
+                    <!--Parametros: Nombre que figura en la vista, Nombre de la accion, Nombre del controlador-->
                     <li>@Html.ActionLink("Inicio", "Index", "Home")</li> 
                     <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
                     <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
                     <li>@Html.ActionLink("Proyecto", "Index", "Proyecto")</li>
+                    <li class="dropdown-toggle" data-toggle="dropdown">@Html.ActionLink("Recurso", "Index", "Recurso")</li>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("Proyecto", "Index", "Proyecto")</li>
+                        <li>@Html.ActionLink("Proyecto", "Index", "Proyecto")</li>
+                        <li>@Html.ActionLink("Proyecto", "Index", "Proyecto")</li>
+                    </ul>
                 </ul>
                 <ul class="nav navbar-nav pull-right">
                     <li>@Html.ActionLink("Log in", "Index", "Account")</li>

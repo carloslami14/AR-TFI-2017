@@ -3,45 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using GestorProyectoWeb.Servicios;
 
 namespace GestorProyectoWeb.Controllers
 {
-    [Authorize]
-    public class AccountController : Controller
+    public class RecursoController : Controller
     {
-        private Repositorio _repositorio;
-
-        // GET: Account
-        [AllowAnonymous]
+        // GET: Recurso
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult Iniciar( string usuario, string cont)
-        {
-            if (_repositorio.BuscarUsuario(usuario,cont))
-            {
-                return RedirectToRoute("Home/Index");
-            }
-
-            return RedirectToAction("Index");
-        }
-
-        // GET: Account/Details/5
+        // GET: Recurso/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Account/Create
+        // GET: Recurso/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Account/Create
+        // POST: Recurso/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -57,13 +42,13 @@ namespace GestorProyectoWeb.Controllers
             }
         }
 
-        // GET: Account/Edit/5
+        // GET: Recurso/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Account/Edit/5
+        // POST: Recurso/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -79,13 +64,13 @@ namespace GestorProyectoWeb.Controllers
             }
         }
 
-        // GET: Account/Delete/5
+        // GET: Recurso/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Account/Delete/5
+        // POST: Recurso/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

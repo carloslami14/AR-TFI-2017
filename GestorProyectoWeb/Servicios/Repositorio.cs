@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data.Entity;
 
 namespace GestorProyectoWeb.Servicios
 {
@@ -25,6 +26,29 @@ namespace GestorProyectoWeb.Servicios
             }
         }
 
+        public Proyecto BuscarProyecto(int id)
+             {
+            using (var db = new GestorProyectoDbContext())
+            {
+                return db.Proyecto.Find(id);
+               
+            }
+        }
+
+        public void EliminarProyecto(int id)
+        {
+            using (var db = new GestorProyectoDbContext())
+            {
+                //Proyecto p= BuscarProyecto(id);
+                //db.Proyecto.Remove();
+
+                var p = new Proyecto { Id = id };
+                db.Entry(p).State = EntityState.Deleted;
+               db.Proyecto.Remove(p);
+                db.SaveChanges();
+
+            }
+        }
         public IEnumerable<Tarea> ObtenerTareas()
         {
             using (var db = new GestorProyectoDbContext())
@@ -81,6 +105,22 @@ namespace GestorProyectoWeb.Servicios
             using (var db = new GestorProyectoDbContext())
             {
                 return db.Usuario.ToList();
+            }
+        }
+
+        public bool BuscarUsuario(string usuario, string cont)
+        {
+            using (var db = new GestorProyectoDbContext())
+            {
+                foreach(var u in db.Usuario)
+                {
+                    if ( u.NombreUsuario == usuario && u.Contraseña == cont)
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
             }
         }
 
