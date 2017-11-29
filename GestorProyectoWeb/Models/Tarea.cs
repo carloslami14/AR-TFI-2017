@@ -21,6 +21,7 @@ namespace GestorProyectoWeb.Models
         [Required(ErrorMessage = "No ingreso la descripcion")]
         [StringLength(300, MinimumLength = 10)]
         public string Descripcion { get; set; }
+
         public DateTime FechaInicio { get; set; }
 
         [Required(ErrorMessage = "No ingreso la fecha de fin")]

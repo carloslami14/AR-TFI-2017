@@ -1,75 +1,48 @@
-﻿using GestorProyectoWeb.Models;
-using GestorProyectoWeb.Servicios;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using GestorProyectoWeb.Servicios;
 
 namespace GestorProyectoWeb.Controllers
 {
-    public class ProyectoController : Controller
+    public class TareaController : Controller
     {
-        private Repositorio _repositorio;
-        
-        
-        public ProyectoController()
+        private readonly Repositorio _repositorio;
+
+
+        public TareaController()
         {
             _repositorio = new Repositorio();
         }
 
-        // GET: Proyecto
+        // GET: Tarea
         public ActionResult Index()
         {
-            var proyectos = _repositorio.ObtenerProyectos();
-            return View(proyectos);
+            return View();
         }
 
-        // GET: Proyecto/Details/5
+        // GET: Tarea/Details/5
         public ActionResult Details(int id)
         {
-            var proyecto = _repositorio.BuscarProyecto(id);
-            return View(proyecto);
+            return View();
         }
 
-        // GET: Proyecto/Create
+        // GET: Tarea/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Proyecto/Create
+        // POST: Tarea/Create
         [HttpPost]
-        public ActionResult Create(Proyecto proyecto)
+        public ActionResult Create(FormCollection collection)
         {
             try
             {
-                   _repositorio.GuardarProyecto(proyecto);
-            }
-            catch (Exception ex)
-            {
+                // TODO: Add insert logic here
 
-                return View();
-            }
-
-            return RedirectToAction("Index");
-        }
-
-        // GET: Proyecto/Edit/5
-        public ActionResult Edit(int id)
-        {
-            Proyecto p = _repositorio.BuscarProyecto(id);
-            return View(p);
-        }
-
-        // POST: Proyecto/Edit/5
-        [HttpPost]
-        public ActionResult Edit(Proyecto p)
-        {
-            try
-            {
-                // TODO: Add update logic here
-                _repositorio.ModificarProyecto(p);
                 return RedirectToAction("Index");
             }
             catch
@@ -78,15 +51,36 @@ namespace GestorProyectoWeb.Controllers
             }
         }
 
-        // GET: Proyecto/Delete/5
-        public ActionResult Delete(int id)
+        // GET: Tarea/Edit/5
+        public ActionResult Edit(int id)
         {
-            _repositorio.EliminarProyecto(id);
-            ViewBag.showSuccessAlert = true;
-            return RedirectToAction("Index");
+            var tarea = _repositorio.BuscarTarea(id);
+            return View(tarea);
         }
 
-        // POST: Proyecto/Delete/5
+        // POST: Tarea/Edit/5
+        [HttpPost]
+        public ActionResult Edit(int id, FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add update logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // GET: Tarea/Delete/5
+        public ActionResult Delete(int id)
+        {
+            return View();
+        }
+
+        // POST: Tarea/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

@@ -10,6 +10,11 @@ namespace GestorProyectoWeb.Models
     [Table("Proyecto")]
     public class Proyecto
     {
+        public Proyecto()
+        {
+            Tareas = new HashSet<Tarea>();
+        }
+
         [Key]
         public int Id { get; set; }
 
@@ -28,6 +33,8 @@ namespace GestorProyectoWeb.Models
 
         public virtual List<Usuario> Usuarios { get; set; }
 
-        public virtual List<Tarea> Tareas { get; set; }
+        public virtual ICollection<Tarea> Tareas { get; set; }
+
+
     }
 }

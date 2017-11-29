@@ -9,6 +9,8 @@ namespace GestorProyectoWeb.Servicios
 {
     public class Repositorio
     {
+        // Proyecto
+
         public IEnumerable<Proyecto> ObtenerProyectos()
         {
             using (var db = new GestorProyectoDbContext())
@@ -30,8 +32,9 @@ namespace GestorProyectoWeb.Servicios
              {
             using (var db = new GestorProyectoDbContext())
             {
-                return db.Proyecto.Find(id);
-               
+                var proyecto = db.Proyecto.Include("Tareas").FirstOrDefault(p => p.Id == id);
+
+                return proyecto;
             }
         }
 
@@ -39,16 +42,24 @@ namespace GestorProyectoWeb.Servicios
         {
             using (var db = new GestorProyectoDbContext())
             {
-                //Proyecto p= BuscarProyecto(id);
-                //db.Proyecto.Remove();
-
                 var p = new Proyecto { Id = id };
                 db.Entry(p).State = EntityState.Deleted;
-               db.Proyecto.Remove(p);
+                db.Proyecto.Remove(p);
                 db.SaveChanges();
-
             }
         }
+
+        public void ModificarProyecto(Proyecto p)
+        {
+            using (var db = new GestorProyectoDbContext())
+            {
+                db.Entry(p).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
+        // Tarea
+
         public IEnumerable<Tarea> ObtenerTareas()
         {
             using (var db = new GestorProyectoDbContext())
@@ -65,6 +76,28 @@ namespace GestorProyectoWeb.Servicios
                 db.SaveChanges();
             }
         }
+
+        public IEnumerable<Tarea> Obtenertareas(int IdProyecto)
+        {
+            using (var db = new GestorProyectoDbContext())
+            {
+                var tareas = (from pp in db.Tarea
+                             where pp.Proyecto.Id == IdProyecto
+                             select pp);
+                return tareas.ToList();
+            }
+        }
+
+        public Tarea BuscarTarea(int idTarea)
+        {
+            using (var db = new GestorProyectoDbContext())
+            {
+                var tarea = db.Tarea.Include("Proyecto").FirstOrDefault(p => p.IdTarea == idTarea);
+                return db.Tarea.Find(idTarea);
+            }
+        }
+
+        // Nota
 
         public IEnumerable<Nota> ObtenerNotas()
         {
@@ -83,6 +116,10 @@ namespace GestorProyectoWeb.Servicios
             }
         }
 
+
+
+        //Recurso
+
         public IEnumerable<Recurso> ObtenerRecursos()
         {
             using (var db = new GestorProyectoDbContext())
@@ -99,6 +136,8 @@ namespace GestorProyectoWeb.Servicios
                 db.SaveChanges();
             }
         }
+
+        // Usuario
 
         public IEnumerable<Usuario> ObtenerUsuarios()
         {
@@ -119,7 +158,6 @@ namespace GestorProyectoWeb.Servicios
                         return true;
                     }
                 }
-
                 return false;
             }
         }

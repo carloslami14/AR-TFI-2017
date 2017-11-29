@@ -1,0 +1,97 @@
+﻿@model GestorProyectoWeb.Models.Proyecto
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Proyecto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaInicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaInicio)
+        </dd>
+
+    </dl>
+
+    <hr />
+
+  
+    <h4>Tareas</h4>
+
+
+    <table class="table">
+        <tr>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Descripcion
+            </th>
+            <th>
+                Fecha Fin
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model.Tareas)
+    {
+        <tr>
+            <td>
+               @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaInicio)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", "Tarea", new { id = item.IdTarea }, null) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.IdTarea }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.IdTarea })
+            </td>
+        </tr>
+    }
+
+    </table>
+
+   
+</div>
+<div class="nav navbar-nav">
+    @Html.ActionLink("Agregar", "Create", "Tarea")
+    
+</div>
+<p>
+    @Html.ActionLink("Volver", "Index")
+</p>
