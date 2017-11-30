@@ -29,6 +29,12 @@ namespace GestorProyectoWeb.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult List()
+          {
+            var usuarios = _repositorio.ObtenerUsuarios();
+            return View();
+          }
+
         // GET: Account/Details/5
         public ActionResult Details(int id)
         {
