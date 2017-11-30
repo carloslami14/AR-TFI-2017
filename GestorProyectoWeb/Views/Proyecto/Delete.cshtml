@@ -1,0 +1,79 @@
+﻿@model GestorProyectoWeb.Models.Proyecto
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Eliminar</h2>
+
+<h3>¿Estas seguro que quieres eliminar el proyecto?</h3>
+<div>
+    <h4>Proyecto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaInicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaInicio)
+        </dd>
+
+    </dl>
+
+    <h4>Tareas</h4>
+
+    <table class="table">
+        <tr>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Fecha Fin</th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Tareas)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaInicio)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", "Tarea", new { id = item.IdTarea }, null) |
+                    @Html.ActionLink("Detalles", "Details", "Tarea", new { id = item.IdTarea }, null) |
+                    @Html.ActionLink("Eliminar", "Delete", "Tarea", new { id = item.IdTarea }, null)
+                </td>
+            </tr>
+        }
+    </table>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Volver", "Index")
+        </div>
+    }
+</div>

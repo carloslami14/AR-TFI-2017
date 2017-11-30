@@ -33,6 +33,8 @@ namespace GestorProyectoWeb.Models
 
         public virtual List<Usuario> Usuarios { get; set; }
 
+        public EnumTipoUsuario   TiposUsuarios { get; set; }
+
         public virtual ICollection<Tarea> Tareas { get; set; }
 
 

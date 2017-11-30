@@ -12,6 +12,11 @@ namespace GestorProyectoWeb.Controllers
     {
         private Repositorio _repositorio;
 
+        public AccountController()
+        {
+            _repositorio = new Repositorio();
+        }
+
         // GET: Account
         [AllowAnonymous]
         public ActionResult Index()
@@ -19,21 +24,22 @@ namespace GestorProyectoWeb.Controllers
             return View();
         }
 
-        public ActionResult Iniciar( string usuario, string cont)
+
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult Index( string usuario, string cont)
         {
             if (_repositorio.BuscarUsuario(usuario,cont))
             {
-                return RedirectToRoute("Home/Index");
+                return RedirectToRoute(new
+                {
+                    controller = "Home",
+                    action = "Index",
+                });
             }
 
             return RedirectToAction("Index");
         }
-
-        public ActionResult List()
-          {
-            var usuarios = _repositorio.ObtenerUsuarios();
-            return View();
-          }
 
         // GET: Account/Details/5
         public ActionResult Details(int id)

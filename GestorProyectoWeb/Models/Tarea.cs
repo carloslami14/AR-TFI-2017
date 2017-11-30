@@ -31,6 +31,8 @@ namespace GestorProyectoWeb.Models
 
         public int Avance { get; set; }
 
+        public int ProyectoId { get; set; }
+
         public Proyecto Proyecto { get; set; }
 
         public virtual List<Usuario> Usuarios { get; set; }

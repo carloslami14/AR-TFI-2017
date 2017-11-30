@@ -29,12 +29,20 @@ namespace GestorProyectoWeb.Servicios
         }
 
         public Proyecto BuscarProyecto(int id)
-             {
+        {
             using (var db = new GestorProyectoDbContext())
             {
                 var proyecto = db.Proyecto.Include("Tareas").FirstOrDefault(p => p.Id == id);
 
                 return proyecto;
+            }
+        }
+
+        public Proyecto BuscarProyectoSolo(int id)
+        {
+            using (var db = new GestorProyectoDbContext())
+            {
+                return db.Proyecto.Find(id);
             }
         }
 
@@ -68,10 +76,11 @@ namespace GestorProyectoWeb.Servicios
             }
         }
 
-        public void GuardarTarea(Tarea tarea)
+        public void GuardarTarea(Tarea tarea, int id)
         {
             using (var db = new GestorProyectoDbContext())
             {
+                tarea.ProyectoId = id;
                 db.Tarea.Add(tarea);
                 db.SaveChanges();
             }

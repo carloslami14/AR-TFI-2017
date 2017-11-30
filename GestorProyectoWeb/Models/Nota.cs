@@ -10,6 +10,8 @@ namespace GestorProyectoWeb.Models
     [Table("Nota")]
     public class Nota
     {
+        public Nota() { }
+        
         [Key]
         public int IdNota { get; set; }
 

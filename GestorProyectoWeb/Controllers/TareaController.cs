@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using GestorProyectoWeb.Servicios;
+using GestorProyectoWeb.Models;
 
 namespace GestorProyectoWeb.Controllers
 {
@@ -11,11 +12,11 @@ namespace GestorProyectoWeb.Controllers
     {
         private readonly Repositorio _repositorio;
 
-
         public TareaController()
         {
             _repositorio = new Repositorio();
         }
+
 
         // GET: Tarea
         public ActionResult Index()
@@ -30,20 +31,31 @@ namespace GestorProyectoWeb.Controllers
         }
 
         // GET: Tarea/Create
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
+            var pro = new Proyecto { Id = id };
+            ViewBag.Proyecto = pro;
+
             return View();
         }
 
         // POST: Tarea/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Tarea tarea, int id)
         {
             try
             {
                 // TODO: Add insert logic here
+                var pro = new Proyecto { Id = id };
+                ViewBag.Proyecto = pro;
 
-                return RedirectToAction("Index");
+                _repositorio.GuardarTarea(tarea, id);
+                return RedirectToRoute(new
+                {
+                    controller = "Proyecto",
+                    action = "Details",
+                    id = id
+                });
             }
             catch
             {

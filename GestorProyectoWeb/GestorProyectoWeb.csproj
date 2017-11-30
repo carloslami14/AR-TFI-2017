@@ -259,7 +259,8 @@
     <Content Include="Views\Account\Create.cshtml" />
     <Content Include="Views\Proyecto\Details.cshtml" />
     <Content Include="Views\Tarea\Edit.cshtml" />
-    <Content Include="Views\Account\List.cshtml" />
+    <Content Include="Views\Tarea\Create.cshtml" />
+    <Content Include="Views\Proyecto\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

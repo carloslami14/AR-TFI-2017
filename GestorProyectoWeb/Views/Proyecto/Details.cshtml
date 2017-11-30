@@ -43,24 +43,19 @@
         </dd>
 
     </dl>
-
     <hr />
+    
+    <h4>Tareas</h4> 
 
-  
-    <h4>Tareas</h4>
-
+    <div class="col-md-offset-10 col-md-10">
+        @Html.ActionLink("Agregar Tarea", "Create", "Tarea", new { id = Model.Id}, null)
+    </div>
 
     <table class="table">
         <tr>
-            <th>
-                Nombre
-            </th>
-            <th>
-                Descripcion
-            </th>
-            <th>
-                Fecha Fin
-            </th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Fecha Fin</th>
             <th></th>
         </tr>
 
@@ -78,19 +73,13 @@
             </td>
             <td>
                 @Html.ActionLink("Editar", "Edit", "Tarea", new { id = item.IdTarea }, null) |
-                @Html.ActionLink("Detalles", "Details", new { id = item.IdTarea }) |
-                @Html.ActionLink("Eliminar", "Delete", new { id = item.IdTarea })
+                @Html.ActionLink("Detalles", "Details", "Tarea", new { id = item.IdTarea }, null) |
+                @Html.ActionLink("Eliminar", "Delete", "Tarea",  new { id = item.IdTarea }, null)
             </td>
         </tr>
     }
-
     </table>
 
-   
-</div>
-<div class="nav navbar-nav">
-    @Html.ActionLink("Agregar", "Create", "Tarea")
-    
 </div>
 <p>
     @Html.ActionLink("Volver", "Index")

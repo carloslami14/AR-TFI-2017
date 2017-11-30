@@ -81,9 +81,8 @@ namespace GestorProyectoWeb.Controllers
         // GET: Proyecto/Delete/5
         public ActionResult Delete(int id)
         {
-            _repositorio.EliminarProyecto(id);
-            ViewBag.showSuccessAlert = true;
-            return RedirectToAction("Index");
+            var proyecto = _repositorio.BuscarProyecto(id);
+            return View(proyecto);
         }
 
         // POST: Proyecto/Delete/5
@@ -93,7 +92,7 @@ namespace GestorProyectoWeb.Controllers
             try
             {
                 // TODO: Add delete logic here
-
+                _repositorio.EliminarProyecto(id);
                 return RedirectToAction("Index");
             }
             catch
