@@ -76,6 +76,17 @@ namespace GestorProyectoWeb.Servicios
             }
         }
 
+        internal void ModificarTarea(Tarea tarea)
+        {
+
+            using (var db = new GestorProyectoDbContext())
+            {
+                db.Entry(tarea).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+
+        }
+
         public void GuardarTarea(Tarea tarea, int id)
         {
             using (var db = new GestorProyectoDbContext())
@@ -94,6 +105,17 @@ namespace GestorProyectoWeb.Servicios
                              where pp.Proyecto.Id == IdProyecto
                              select pp);
                 return tareas.ToList();
+            }
+        }
+
+        internal void EliminarTarea(int id)
+        {
+            using (var db = new GestorProyectoDbContext())
+            {
+                var t = new Tarea { IdTarea = id };
+                db.Entry(t).State = EntityState.Deleted;
+                db.Tarea.Remove(t);
+                db.SaveChanges();
             }
         }
 

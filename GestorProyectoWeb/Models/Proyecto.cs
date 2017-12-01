@@ -28,6 +28,7 @@ namespace GestorProyectoWeb.Models
 
         [Required]
         //[DataType(DataType.Date)]
+        //[DisplayFormat(ApplyFormatInEditMode =true,DataFormatString ="{0:dd-MM-yyyy}")]
         [Display(Name = "Fecha de Inicio")]
         public DateTime FechaInicio { get; set; }
 
