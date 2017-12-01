@@ -7,6 +7,8 @@ namespace GestorProyectoWeb.Models
 {
     public class RecursoHardware: Recurso
     {
+        public RecursoHardware() { }
+
         public EnumTipoRecurso TipoRecurso { get; set; }
         public int Cantidad { get; set; }
 

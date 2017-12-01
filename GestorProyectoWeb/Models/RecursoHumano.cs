@@ -5,8 +5,10 @@ using System.Web;
 
 namespace GestorProyectoWeb.Models
 {
-    public class RecursoHumano: Recurso
+    public class RecursoHumano : Recurso
     {
+        public RecursoHumano() { }
+
         public EnumTipoRecurso TipoRecurso { get; }
         
         public RecursoHumano(int id, string nom, float pre, string desc, List<Tarea> tar)

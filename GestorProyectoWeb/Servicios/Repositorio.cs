@@ -76,17 +76,6 @@ namespace GestorProyectoWeb.Servicios
             }
         }
 
-        internal void ModificarTarea(Tarea tarea)
-        {
-
-            using (var db = new GestorProyectoDbContext())
-            {
-                db.Entry(tarea).State = EntityState.Modified;
-                db.SaveChanges();
-            }
-
-        }
-
         public void GuardarTarea(Tarea tarea, int id)
         {
             using (var db = new GestorProyectoDbContext())
@@ -105,17 +94,6 @@ namespace GestorProyectoWeb.Servicios
                              where pp.Proyecto.Id == IdProyecto
                              select pp);
                 return tareas.ToList();
-            }
-        }
-
-        internal void EliminarTarea(int id)
-        {
-            using (var db = new GestorProyectoDbContext())
-            {
-                var t = new Tarea { IdTarea = id };
-                db.Entry(t).State = EntityState.Deleted;
-                db.Tarea.Remove(t);
-                db.SaveChanges();
             }
         }
 
@@ -147,15 +125,35 @@ namespace GestorProyectoWeb.Servicios
             }
         }
 
-
-
         //Recurso
 
-        public IEnumerable<Recurso> ObtenerRecursos()
+        public IEnumerable<Recurso> ObtenerRecursosSoftware()
         {
             using (var db = new GestorProyectoDbContext())
             {
-                return db.Recurso.ToList();
+                IQueryable<Recurso> recursos = db.Recurso;
+                var recursosSoftware = recursos.OfType<RecursoSoftware>().ToList();
+                return recursosSoftware;
+            }
+        }
+
+        public IEnumerable<Recurso> ObtenerRecursoHardware()
+        {
+            using (var db = new GestorProyectoDbContext())
+            {
+                IQueryable<Recurso> recursos = db.Recurso;
+                var recursosHardware = recursos.OfType<RecursoHardware>().ToList();
+                return recursosHardware;
+            }
+        }
+
+        public IEnumerable<Recurso> ObtenerRecursosHumano()
+        {
+            using (var db = new GestorProyectoDbContext())
+            {
+                IQueryable<Recurso> recursos = db.Recurso;
+                var recursosHumano = recursos.OfType<RecursoHumano>().ToList();
+                return recursosHumano;
             }
         }
 

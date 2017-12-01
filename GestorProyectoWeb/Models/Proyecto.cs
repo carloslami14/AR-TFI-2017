@@ -28,7 +28,6 @@ namespace GestorProyectoWeb.Models
 
         [Required]
         //[DataType(DataType.Date)]
-        //[DisplayFormat(ApplyFormatInEditMode =true,DataFormatString ="{0:dd-MM-yyyy}")]
         [Display(Name = "Fecha de Inicio")]
         public DateTime FechaInicio { get; set; }
 
@@ -37,7 +36,5 @@ namespace GestorProyectoWeb.Models
         public EnumTipoUsuario   TiposUsuarios { get; set; }
 
         public virtual ICollection<Tarea> Tareas { get; set; }
-
-
     }
 }

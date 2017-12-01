@@ -3,15 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using GestorProyectoWeb.Servicios;
+using GestorProyectoWeb.Models;
 
 namespace GestorProyectoWeb.Controllers
 {
-    public class RecursoController : Controller
+    public class RecursoSoftwareController : Controller
     {
+        private readonly Repositorio _repositorio;
+        
+        public RecursoSoftwareController()
+        {
+            _repositorio = new Repositorio();
+        }
+
         // GET: Recurso
         public ActionResult Index()
         {
-            return View();
+            var recurso = _repositorio.ObtenerRecursosSoftware();
+            return View(recurso);
         }
 
         // GET: Recurso/Details/5
@@ -28,12 +38,12 @@ namespace GestorProyectoWeb.Controllers
 
         // POST: Recurso/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(RecursoSoftware recurso)
         {
             try
             {
                 // TODO: Add insert logic here
-
+                _repositorio.GuardarRecurso(recurso);
                 return RedirectToAction("Index");
             }
             catch

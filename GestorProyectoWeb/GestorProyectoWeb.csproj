@@ -152,7 +152,9 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProyectoController.cs" />
-    <Compile Include="Controllers\RecursoController.cs" />
+    <Compile Include="Controllers\RecursoHardwareController.cs" />
+    <Compile Include="Controllers\RecursoHumanoController.cs" />
+    <Compile Include="Controllers\RecursoSoftwareController.cs" />
     <Compile Include="Controllers\TareaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -233,9 +235,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -255,15 +255,18 @@
     <Content Include="Views\Proyecto\Create.cshtml" />
     <Content Include="Scripts\jquery-3.2.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.2.1.min.map" />
-    <Content Include="Views\Recurso\Index.cshtml" />
-    <Content Include="Views\Recurso\Create.cshtml" />
     <Content Include="Views\Proyecto\Edit.cshtml" />
     <Content Include="Views\Account\Create.cshtml" />
     <Content Include="Views\Proyecto\Details.cshtml" />
     <Content Include="Views\Tarea\Edit.cshtml" />
     <Content Include="Views\Tarea\Create.cshtml" />
     <Content Include="Views\Proyecto\Delete.cshtml" />
-    <Content Include="Views\Tarea\Delete.cshtml" />
+    <Content Include="Views\RecursoSoftware\Index.cshtml" />
+    <Content Include="Views\RecursoSoftware\Create.cshtml" />
+    <Content Include="Views\RecursoHardware\Index.cshtml" />
+    <Content Include="Views\RecursoHardware\Create.cshtml" />
+    <Content Include="Views\RecursoHumano\Index.cshtml" />
+    <Content Include="Views\RecursoHumano\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,10 +1,10 @@
-﻿@model IEnumerable<GestorProyectoWeb.Models.Recurso>
+﻿@model IEnumerable<GestorProyectoWeb.Models.RecursoHardware>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Recursos Hardware</h2>
 
 <p>
     @Html.ActionLink("Crear Nuevo", "Create")
@@ -19,6 +19,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cantidad)
         </th>
         <th></th>
     </tr>
@@ -35,9 +38,12 @@
             @Html.DisplayFor(modelItem => item.Descripcion)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdRecurso }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdRecurso }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdRecurso })
+            @Html.DisplayFor(modelItem => item.Cantidad)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.IdRecurso }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.IdRecurso }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.IdRecurso })
         </td>
     </tr>
 }

@@ -8,54 +8,43 @@ using GestorProyectoWeb.Models;
 
 namespace GestorProyectoWeb.Controllers
 {
-    public class TareaController : Controller
+    public class RecursoHumanoController : Controller
     {
         private readonly Repositorio _repositorio;
 
-        public TareaController()
+        public RecursoHumanoController()
         {
             _repositorio = new Repositorio();
         }
 
-
-        // GET: Tarea
+        // GET: RecursoHumano
         public ActionResult Index()
         {
-            return View();
+            var recursos = _repositorio.ObtenerRecursosHumano();
+            return View(recursos);
         }
 
-        // GET: Tarea/Details/5
+        // GET: RecursoHumano/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Tarea/Create
-        public ActionResult Create(int id)
+        // GET: RecursoHumano/Create
+        public ActionResult Create()
         {
-            var pro = new Proyecto { Id = id };
-            ViewBag.Proyecto = pro;
-
             return View();
         }
 
-        // POST: Tarea/Create
+        // POST: RecursoHumano/Create
         [HttpPost]
-        public ActionResult Create(Tarea tarea, int id)
+        public ActionResult Create(RecursoHumano recurso)
         {
             try
             {
                 // TODO: Add insert logic here
-                var pro = new Proyecto { Id = id };
-                ViewBag.Proyecto = pro;
-
-                _repositorio.GuardarTarea(tarea, id);
-                return RedirectToRoute(new
-                {
-                    controller = "Proyecto",
-                    action = "Details",
-                    id = id
-                });
+                _repositorio.GuardarRecurso(recurso);
+                return RedirectToAction("Index");
             }
             catch
             {
@@ -63,14 +52,13 @@ namespace GestorProyectoWeb.Controllers
             }
         }
 
-        // GET: Tarea/Edit/5
+        // GET: RecursoHumano/Edit/5
         public ActionResult Edit(int id)
         {
-            var tarea = _repositorio.BuscarTarea(id);
-            return View(tarea);
+            return View();
         }
 
-        // POST: Tarea/Edit/5
+        // POST: RecursoHumano/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -86,13 +74,13 @@ namespace GestorProyectoWeb.Controllers
             }
         }
 
-        // GET: Tarea/Delete/5
+        // GET: RecursoHumano/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Tarea/Delete/5
+        // POST: RecursoHumano/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

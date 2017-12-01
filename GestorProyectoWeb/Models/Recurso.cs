@@ -10,6 +10,7 @@ namespace GestorProyectoWeb.Models
     [Table("Recurso")]
     public abstract class Recurso
     {
+        public Recurso() { } 
         [Key]
         public int IdRecurso { get; set; }
 
