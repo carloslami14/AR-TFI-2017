@@ -27,7 +27,8 @@ namespace GestorProyectoWeb.Controllers
         // GET: Tarea/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var tarea= _repositorio.BuscarTarea(id);
+            return View(tarea);
         }
 
         // GET: Tarea/Create
@@ -66,8 +67,7 @@ namespace GestorProyectoWeb.Controllers
         // GET: Tarea/Edit/5
         public ActionResult Edit(int id)
         {
-            var pro = new Proyecto { Id = id };
-            ViewBag.Proyecto = pro;
+            
             var tarea = _repositorio.BuscarTarea(id);
             return View(tarea);
         }
@@ -80,8 +80,7 @@ namespace GestorProyectoWeb.Controllers
             {
                 // TODO: Add update logic here
 
-                var pro = new Proyecto { Id = id };
-                ViewBag.Proyecto = pro;
+              
 
                 _repositorio.ModificarTarea(tarea);
                 return RedirectToRoute(new
@@ -98,6 +97,7 @@ namespace GestorProyectoWeb.Controllers
         }
 
         // GET: Tarea/Delete/5
+
         public ActionResult Delete(int id)
         {
            
